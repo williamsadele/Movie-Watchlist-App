@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<header>
+    <div class="header-top">
+        <span class="reel">🎬</span>
+        <h1>Watchlist</h1>
+    </div>
+    <p class="stats">5 movies &nbsp;·&nbsp; <strong>2 watched</strong></p>
+    <div class="divider"></div>
+</header>
+<div class="add-section">
+    <input type="text" id="input-el" placeholder="Type a movie title...">
+    <button id="addbtn">+ Add</button>
+</div>
+
+<ul id="ul-el">
+
+    <li>
+        <span class="movie-title">Inception</span>
+        <div class="actions">
+            <button class="btn-watched">Watched</button>
+            <button class="btn-delete">Delete</button>
+        </div>
+    </li>
+
+    <li class="watched">
+        <span class="movie-title">Interstellar</span>
+        <div class="actions">
+            <button class="btn-watched">Unwatch</button>
+            <button class="btn-delete">Delete</button>
+        </div>
+    </li>
+
+    <li>
+        <span class="movie-title">The Dark Knight</span>
+        <div class="actions">
+            <button class="btn-watched">Watched</button>
+            <button class="btn-delete">Delete</button>
+        </div>
+    </li>
+
+    <li class="watched">
+        <span class="movie-title">Parasite</span>
+        <div class="actions">
+            <button class="btn-watched">Unwatch</button>
+            <button class="btn-delete">Delete</button>
+        </div>
+    </li>
+
+    <li>
+        <span class="movie-title">The Grand Budapest Hotel</span>
+        <div class="actions">
+            <button class="btn-watched">Watched</button>
+            <button class="btn-delete">Delete</button>
+        </div>
+    </li>
+
+</ul>
+
+<div class="footer">
+    <button id="deletebtn">Clear All</button>
+</div>
+
+</div>
+<script src="script.js" ></script>
+</body>
+</html>

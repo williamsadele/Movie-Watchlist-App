@@ -1,0 +1,233 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --bg:               #0D0D14;
+    --surface:          #16161F;
+    --surface-hover:    #1E1E2C;
+    --accent:           #F5C518;
+    --accent-dim:       rgba(245, 197, 24, 0.12);
+    --text-primary:     #EFEFEF;
+    --text-secondary:   #7A7A8C;
+    --text-muted:       #45455A;
+    --border:           rgba(255, 255, 255, 0.06);
+    --green:            #2A9D6F;
+    --green-dim:        rgba(42, 157, 111, 0.14);
+    --red:              #E05555;
+    --red-dim:          rgba(224, 85, 85, 0.12);
+    --radius:           10px;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 52px 16px 80px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+header {
+    margin-bottom: 36px;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.reel {
+    font-size: 30px;
+    line-height: 1;
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px;
+    letter-spacing: 3px;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.stats {
+    font-size: 13px;
+    color: var(--text-secondary);
+    letter-spacing: 0.4px;
+}
+
+.stats strong {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--accent) 0%, transparent 70%);
+    margin-top: 14px;
+}
+
+.add-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+#input-el {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#input-el::placeholder {
+    color: var(--text-muted);
+}
+
+#input-el:focus {
+    border-color: var(--accent);
+}
+
+#addbtn {
+    background: var(--accent);
+    color: #0D0D14;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: 0.4px;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+#box:hover  { 
+    opacity: 0.88; 
+}
+#box:active { 
+    transform: scale(0.97); 
+}
+
+#ul-el {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);   /* golden left strip */
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 18px;
+    transition: background 0.18s, border-left-color 0.3s;
+}
+
+li:hover {
+    background: var(--surface-hover);
+}
+
+li.watched {
+    border-left-color: var(--text-muted);   /* strip goes grey */
+    opacity: 0.6;
+}
+
+li.watched .movie-title {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+.movie-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    flex: 1;
+    transition: color 0.25s, text-decoration 0.25s;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-watched,
+.btn-delete {
+    border: none;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 14px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.18s, transform 0.1s;
+}
+
+.btn-watched:active,
+.btn-delete:active {
+    transform: scale(0.95);
+}
+
+.btn-watched {
+    background: var(--green-dim);
+    color: var(--green);
+}
+
+.btn-watched:hover {
+    background: rgba(42, 157, 111, 0.28);
+}
+
+.btn-delete {
+    background: var(--red-dim);
+    color: var(--red);
+}
+
+.btn-delete:hover {
+    background: rgba(224, 85, 85, 0.26);
+}
+.footer {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#deletebtn {
+    background: transparent;
+    border: 1px solid rgba(224, 85, 85, 0.28);
+    border-radius: var(--radius);
+    color: var(--red);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 20px;
+    cursor: pointer;
+    letter-spacing: 0.4px;
+    transition: background 0.18s, border-color 0.18s;
+}
+
+#deletebtn:hover {
+    background: var(--red-dim);
+    border-color: var(--red);
+}
