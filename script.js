@@ -1,14 +1,107 @@
 let movies = []
-const inptEl = document.getElementById("input-el")
-const addBtn = document.getElementById("addbtn")
-const ulEl = document.getElementById("Ul-el")
-const watchedBtn = document.queryselector(".btn-watched")
-const deleteBtn = document.querySelector(".btn-delete")
+ 
+const inputEl   = document.getElementById("input-el")
+const addBtn    = document.getElementById("addbtn")
+const ulEl      = document.getElementById("ul-el")
+const deleteBtn = document.getElementById("deletebtn")
+const clearAllBtn = document.getElementById("clear-btn")
+const statsEl   = document.querySelector(".stats")
+ 
+const savedMovies = JSON.parse(localStorage.getItem("movies"))
+ 
+if (savedMovies) {
+    movies = savedMovies
+    renderMovies()
+}
 
 function renderMovies() {
-    listItems = ""
-    for(let i=0; i < movies.length; i++)
-        if (watched){
-            strikethrough
+    let listItems = ""
+ 
+    for (let i = 0; i < movies.length; i++) {
+        let watchedClass = ""
+        if (movies[i].watched === true) {
+            watchedClass = "watched"
         }
+ 
+        let watchedBtnText = ""
+        if (movies[i].watched === true) {
+            watchedBtnText = "Unwatch"
+        } else {
+            watchedBtnText = "Watched"
+        }
+ 
+        listItems += `
+            <li class="${watchedClass}">
+                <span class="movie-title">${movies[i].title}</span>
+                <div class="actions">
+                    <button class="btn-watched" onclick="toggleWatched(${i})">${watchedBtnText}</button>
+                    <button class="btn-delete"  onclick="deleteMovie(${i})">Delete</button>
+                </div>
+            </li>
+        `
+    }
+ 
+    ulEl.innerHTML = listItems  // hand the whole built string to the page at once
+    getCount()                  // update the stats every time the list re-renders
 }
+ 
+// ── addMovie ───────────────────────────────────────────────────────────────
+// runs when the Add button is clicked
+ 
+function addMovie() {
+    if (inputEl.value === "") {
+        return  // stop here — don't add an empty movie
+    }
+ 
+    movies.push({ title: inputEl.value, watched: false })  // new movie always starts unwatched
+    inputEl.value = ""                                      // clear the input field
+    localStorage.setItem("movies", JSON.stringify(movies)) // save updated array
+    renderMovies()
+}
+ 
+// ── toggleWatched ──────────────────────────────────────────────────────────
+// flips the watched property on a specific movie
+ 
+function toggleWatched(index) {
+    if (movies[index].watched === true) {
+        movies[index].watched = false   // was watched — unwatch it
+    } else {
+        movies[index].watched = true    // wasn't watched — mark it watched
+    }
+    localStorage.setItem("movies", JSON.stringify(movies))
+    renderMovies()
+}
+ 
+// ── deleteMovie ────────────────────────────────────────────────────────────
+// removes one specific movie from the array
+ 
+function deleteMovie(index) {
+    movies.splice(index, 1)                                // remove 1 item at this index
+    localStorage.setItem("movies", JSON.stringify(movies))
+    renderMovies()
+}
+ 
+// ── getCount ───────────────────────────────────────────────────────────────
+// counts watched movies and updates the stats text at the top
+ 
+function getCount() {
+    let watchedCount = 0
+ 
+    for (let i = 0; i < movies.length; i++) {
+        if (movies[i].watched === true) {
+            watchedCount += 1
+        }
+    }
+ 
+    statsEl.innerHTML = `${movies.length} movies &nbsp;·&nbsp; <strong>${watchedCount} watched</strong>`
+}
+ 
+// ── Event listeners ────────────────────────────────────────────────────────
+ 
+addBtn.addEventListener("click", addMovie)
+ 
+deleteBtn.addEventListener("dblclick", function() {
+    localStorage.clear()
+    movies = []
+    renderMovies()
+})
