@@ -4,7 +4,6 @@ const inputEl   = document.getElementById("input-el")
 const addBtn    = document.getElementById("addbtn")
 const ulEl      = document.getElementById("ul-el")
 const deleteBtn = document.getElementById("deletebtn")
-const clearAllBtn = document.getElementById("clear-btn")
 const statsEl   = document.querySelector(".stats")
  
 const savedMovies = JSON.parse(localStorage.getItem("movies"))
@@ -41,16 +40,13 @@ function renderMovies() {
         `
     }
  
-    ulEl.innerHTML = listItems  // hand the whole built string to the page at once
-    getCount()                  // update the stats every time the list re-renders
+    ulEl.innerHTML = listItems
+    getCount()
 }
- 
-// ── addMovie ───────────────────────────────────────────────────────────────
-// runs when the Add button is clicked
  
 function addMovie() {
     if (inputEl.value === "") {
-        return  // stop here — don't add an empty movie
+        return
     }
  
     movies.push({ title: inputEl.value, watched: false })  // new movie always starts unwatched
@@ -63,11 +59,7 @@ function addMovie() {
 // flips the watched property on a specific movie
  
 function toggleWatched(index) {
-    if (movies[index].watched === true) {
-        movies[index].watched = false   // was watched — unwatch it
-    } else {
-        movies[index].watched = true    // wasn't watched — mark it watched
-    }
+    movies[index].watched = !movies[index].watched
     localStorage.setItem("movies", JSON.stringify(movies))
     renderMovies()
 }
