@@ -43,39 +43,31 @@ function renderMovies() {
     ulEl.innerHTML = listItems
     getCount()
 }
- 
+
 function addMovie() {
     if (inputEl.value === "") {
         return
     }
  
-    movies.push({ title: inputEl.value, watched: false })  // new movie always starts unwatched
-    inputEl.value = ""                                      // clear the input field
-    localStorage.setItem("movies", JSON.stringify(movies)) // save updated array
+    movies.push({ title: inputEl.value, watched: false })
+    inputEl.value = ""
+    localStorage.setItem("movies", JSON.stringify(movies))
     renderMovies()
 }
- 
-// ── toggleWatched ──────────────────────────────────────────────────────────
-// flips the watched property on a specific movie
+
  
 function toggleWatched(index) {
     movies[index].watched = !movies[index].watched
     localStorage.setItem("movies", JSON.stringify(movies))
     renderMovies()
 }
- 
-// ── deleteMovie ────────────────────────────────────────────────────────────
-// removes one specific movie from the array
- 
+
 function deleteMovie(index) {
-    movies.splice(index, 1)                                // remove 1 item at this index
+    movies.splice(index, 1)
     localStorage.setItem("movies", JSON.stringify(movies))
     renderMovies()
 }
- 
-// ── getCount ───────────────────────────────────────────────────────────────
-// counts watched movies and updates the stats text at the top
- 
+
 function getCount() {
     let watchedCount = 0
  
@@ -87,9 +79,7 @@ function getCount() {
  
     statsEl.innerHTML = `${movies.length} movies &nbsp;·&nbsp; <strong>${watchedCount} watched</strong>`
 }
- 
-// ── Event listeners ────────────────────────────────────────────────────────
- 
+
 addBtn.addEventListener("click", addMovie)
  
 deleteBtn.addEventListener("dblclick", function() {
